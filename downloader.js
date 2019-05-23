@@ -10,7 +10,7 @@ const getUri = require('get-uri');
    the low-level connection creation functions (http.get(), ftp.connect(), etc). */
 const download = (uri, options, callback) => {
     getUri(uri, options, (err, res) => {
-        if (err) return callback(err, false);
+        if (err) return callback(err, false, "Failed");
 
         // create directory
         let directory = `./download`
@@ -19,7 +19,7 @@ const download = (uri, options, callback) => {
         fs.mkdir(directory, { recursive: true }, (err) => {
             if (err) return callback(err, false);
 
-            //write file to local
+            // write file to local
             let writeStream = fs.createWriteStream(`${directory}/${filename}`, { flags: 'w' });
             res.pipe(writeStream);
             writeStream.on('close', function () {

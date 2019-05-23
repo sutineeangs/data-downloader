@@ -17,7 +17,7 @@ const main = () => {
     for (let i = 0; i <= uris.length - 1; i++) {
         let uri = uris[i];
         try {
-            download(uri, null, (err, res)=>{
+            download(uri, null, (err, res, message)=>{
                 if(err) throw err;
                 if(res) console.log(uri, 'download successful!');
             });
