@@ -1,8 +1,5 @@
 // import modules
 const args = require('minimist')(process.argv.slice(2));
-const _ = require('underscore');
-const fs = require('fs');
-const getUri = require('get-uri');
 const download = require('./downloader');
 
 
