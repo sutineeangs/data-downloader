@@ -1,6 +1,8 @@
 {
     "uris": [
         "http://www.bloggang.com/data/gunzmyblog/picture/1220435057.jpg",
-        "https://stackoverflow.com/questions/10623798/read-contents-of-node-js-stream-into-a-string-variable"
+        "https://stackoverflow.com/questions/10623798/read-contents-of-node-js-stream-into-a-string-variable",
+        "ftp://anonymous:miemail%40gmail.com@speedtest.tele2.net/100KB.zip",
+        "sftp://demo:password@test.rebex.net:/readme.txt"
     ]
 }
