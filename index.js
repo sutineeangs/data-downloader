@@ -9,22 +9,22 @@ const getUri = require('get-uri');
 // function download(uri: String!, options: Object!)
 /* Any other options passed in to the options object will be passed through to 
    the low-level connection creation functions (http.get(), ftp.connect(), etc). */
-const download = (uri, options) => {
+const download = (uri, options, callback) => {
     getUri(uri, options, (err, res) => {
-        if (err) throw err;
+        if (err) return callback(err);
 
         // create directory
         let directory = `./download`
         let filename = `${_.last(uri.split("/"))}`
 
         fs.mkdir(directory, { recursive: true }, (err) => {
-            if (err) throw err;
+            if (err) return callback(err);
 
             //write file to local
             let writeStream = fs.createWriteStream(`${directory}/${filename}`, { flags: 'w' });
             res.pipe(writeStream);
             writeStream.on('close', function () {
-                console.log(uri, 'download successful!');
+                callback(null, true)
             });
         });
     })
@@ -45,7 +45,10 @@ const main = () => {
     for (let i = 0; i <= uris.length - 1; i++) {
         let uri = uris[i];
         try {
-            download(uri, null);
+            download(uri, null, (err, res)=>{
+                if(err) throw err;
+                if(res) console.log(uri, 'download successful!');
+            });
         } catch (error) {
             console.error(uri, "download failed")
         }
