@@ -4,6 +4,8 @@ const fs = require('fs');
 const getUri = require('get-uri');
 
 
+
+// function download(uri: String!)
 const download = (uri) => {
     getUri(uri, (err, res) => {
         if (err) throw err;
@@ -23,6 +25,7 @@ const download = (uri) => {
         });
     })
 }
+
 
 const main = () => {
 
