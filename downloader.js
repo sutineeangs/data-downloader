@@ -23,7 +23,7 @@ const download = (uri, options, callback) => {
             let writeStream = fs.createWriteStream(`${directory}/${filename}`, { flags: 'w' });
             res.pipe(writeStream);
             writeStream.on('close', function () {
-                callback(null, true)
+                callback(null, true, `${directory}/${filename}`)
             });
         });
     })
